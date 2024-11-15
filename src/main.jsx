@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
@@ -6,7 +6,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import Home from './components/Home.jsx'
 import AllNotes from './components/AllNotes.jsx'
 import ViewNote from './components/ViewNote.jsx'
-import { Provider } from 'react-redux'
+import { Provider, useSelector } from 'react-redux'
 import { store } from './redux/store.js'
 
 const router = createBrowserRouter(createRoutesFromElements(

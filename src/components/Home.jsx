@@ -10,7 +10,7 @@ const Home = () => {
   const [search, setSearch] = useSearchParams()
   const noteId = search.get('noteId')
   const dispatch = useDispatch();
-  const notes = useSelector(state => state.notes)
+  const notes = useSelector(state => state.note.notes)
   
   const handleClick = () => {
     const newNote = {

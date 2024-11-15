@@ -7,7 +7,7 @@ const ViewNote = () => {
 
   console.log(id)
 
-  const notes = useSelector(state=>state.notes)
+  const notes = useSelector(state=>state.note.notes)
 
   const note = notes.filter(note => note.id === id)[0]
 
