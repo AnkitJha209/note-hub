@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 const initialState = {
     notes : localStorage.getItem('notes') ? JSON.parse(localStorage.getItem('notes')) : []
@@ -12,10 +13,12 @@ export const noteSlice = createSlice({
             const newNote = action.payload
             state.notes.push(newNote)
             localStorage.setItem('notes', JSON.stringify(state.notes))
+            toast.success("Note Created Succesfully")
         },
         deleteNote: (state, action) => {
             state.notes = state.notes.filter(note => note.id !== action.payload)
             localStorage.setItem('notes', JSON.stringify(state.notes))
+            toast.success("Note Deleted Succesfully")
         },
         editNote: (state, action) => {
             const {title, content, id} = action.payload
@@ -26,14 +29,11 @@ export const noteSlice = createSlice({
                 ) : ''
             ));
             localStorage.setItem('notes', JSON.stringify(state.notes))
-        },
-        deleteAllNotes: (state) => {
-            state.notes = []
-            localStorage.setItem('notes', JSON.stringify(state.notes))
+            toast.success("Note Updated Succesfully")
         },
     }
 })
 
-export const {createNote, deleteNote, editNote, deleteAllNotes} = noteSlice.actions
+export const {createNote, deleteNote, editNote} = noteSlice.actions
 
 export default noteSlice.reducer

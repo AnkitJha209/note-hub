@@ -13,10 +13,14 @@ const ViewNote = () => {
 
   console.log(note);
   return (
-    <div className='text-3xl text-white'>
+    <div className='flex flex-col items-start justify-start text-left'>
+      <div className='text-3xl text-gray-600 font-bold uppercase'>
       {note.title}
-      <br />
-      {note.content}
+      </div>
+      <div className='mt-5 text-xl text-gray-400 font-semibold'>
+        {note.content}
+      </div>
+
     </div>
   )
 }
