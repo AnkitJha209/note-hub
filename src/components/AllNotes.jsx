@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { deleteNote } from '../features/noteSlice/noteSlice'
@@ -9,6 +9,7 @@ import { FaEye } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 
 const AllNotes = () => {
+  const [searchTerm, setSearchTerm] = useState('')
   const notes = useSelector(state => state.note.notes)
   const dispatch = useDispatch()
   console.log(notes)
@@ -20,9 +21,17 @@ const AllNotes = () => {
     window.navigator.clipboard.writeText(n[0].content)
     toast.success('Copied To Clipboard' )
   }
+
+  const filteredNotes = notes.filter((note) =>
+    note.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   return (
-    <div className='w-[70%]'>
-      {notes.length > 0 && notes.map(note => (
+    <div className='w-[70%] flex flex-col items-center gap-10'>
+      <div>
+        <input type="text" value={searchTerm} className='bg-gray-900 text-white px-5 w-full py-2 rounded-lg focus:outline-none' placeholder='Search Note...' onChange={(e) => setSearchTerm(e.target.value)} />
+      </div>
+      <div className='w-[68%]'>
+      {filteredNotes.length > 0 ? filteredNotes.map(note => (
         <div key={note.id} className='bg-gray-700 text-gray-200 rounded-lg px-5 py-2 mb-5 w-full'>
           <h2 className='text-2xl font-bold text-gray-400 text-left'>{note.title}</h2>
           <div className='flex flex-col sm:justify-between mt-5 gap-5 sm:flex-row'>
@@ -40,7 +49,14 @@ const AllNotes = () => {
           </div>
           
         </div>
-      ))}
+      )) 
+      : (
+        <div className="text-4xl text-center font-bold text-gray-500 w-full">
+          No Data Found
+        </div>
+      )
+    }
+    </div>
     </div>
   )
 }
