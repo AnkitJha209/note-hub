@@ -33,7 +33,7 @@ const NavBar = () => {
       <NavLink
         to=""
         className={({ isActive }) =>
-          `text-white px-4 py-2 font-semibold rounded-lg ${
+          `text-white px-4 py-2 font-semibold text-sm sm:text-lg rounded-lg ${
             isActive ? "bg-blue-800" : "bg-blue-700"
           }`
         }
@@ -43,14 +43,14 @@ const NavBar = () => {
       <NavLink
         to="all-notes"
         className={({ isActive }) =>
-          `text-white px-4 py-2 font-semibold rounded-lg hover:bg-blue-800 ${
+          `text-white px-2 sm:px-4 py-2 text-sm sm:text-lg font-semibold rounded-lg hover:bg-blue-800 ${
             isActive ? "bg-blue-800" : "bg-blue-700"
           }`
         }
       >
         All Notes
       </NavLink>
-      <label className="relative inline-flex items-center cursor-pointer">
+      <label className="relative flex justify-center items-center cursor-pointer">
       <input type="checkbox" 
       value=""  
       className="sr-only peer" 
